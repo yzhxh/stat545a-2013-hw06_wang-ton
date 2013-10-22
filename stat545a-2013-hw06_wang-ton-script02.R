@@ -7,7 +7,7 @@ library(lattice)
 sgDat <- read.delim("gapminderDataSorted.txt")
 ## Make sure your new continent order is still in force. 
 levels(sgDat$continent)
-head(sgDat)
+## head(sgDat)
 
 ##Fit a linear regression of life expectancy on year within each country. Write the estimated intercepts, slopes, and residual error variance (or sd) to file.
 
@@ -34,13 +34,18 @@ write.table(wbsgDat,
             "WorstBestCountries.txt", quote = FALSE,
             sep = "\t", row.names = FALSE)
 ##Create a single-page figure for each continent, including data only for the 6-8 "extreme" countries, and write to file. One file per continent, with an informative name. The figure should give scatterplots of life expectancy vs. year, panelling/facetting on country, fitted line overlaid.
-d_ply(wbsDat, ~ Film, function(z) {
-  theCountry <- z$country[1]
-p <- ggplot(wbsgDat, aes(x = year, y = lifeExp)) + scale_y_log10() + geom_smooth(method = "lm")+
-  ggtitle(theCountry) + facet_wrap(~continent) + 
+extremCountries <- as.vector(wbsgDat$country)
+
+extremSgDat <- subset(sgDat, country %in% extremCountries)
+
+d_ply(extremSgDat, ~ continent, function(z) {
+  
+  theContinent <- z$continent[1]  
+  p <- ggplot(z, aes(x = year, y = lifeExp)) + scale_y_log10() + geom_smooth(method = "lm")+
+  ggtitle(theContinent) + facet_wrap(~country) + 
   geom_jitter(alpha = 1/2, position = position_jitter(width = 0.1))
- theCountry <- gsub(" ", "_", theCountry)
- png(paste0("scatterplot_wordsByRace_", theCountry, ".png"))
+ theContinent <- gsub(" ", "_", theContinent)  
+ png(paste0("scatterplot_extremLifeYearReg_", theContinent, ".png"))
   print(p)
   dev.off()
 })
