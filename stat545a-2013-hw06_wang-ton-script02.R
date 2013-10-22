@@ -19,24 +19,26 @@ write.table( ldply (dlply(sgDat, ~country+continent, lm, formula = lifeExp ~ yea
             "lifeExpOnYearRegResult.txt", quote = FALSE,
             sep = "\t", row.names = FALSE,col.names=TRUE)
 
-##Find the "worst" and "best" countries for each continent.
+##Find the "worst" and "best" countries for each continent.(assuing no countries share the same sd)
 leReg <- read.delim("lifeExpOnYearRegResult.txt")
 leReg <- data.frame(leReg)
-extremgDat <- ddply(leReg, ~ continent, function(x) {
-  sd <- range(x$sd)
-  return(data.frame(sd, stat = c("best", "worst")))
-})
-extremSd <- as.vector(extremgDat$sd)
-wbsgDat <- leReg[which( leReg$sd %in% extremSd),]
+
+extremRegDat <- ddply(leReg, ~ continent, function(x) {
+  ##sd <- range(x$sd)
+  ## return(data.frame(sd, stat = c("best", "worst")))
+  best_sd <- tail(sort(x$sd),3)
+  worst_sd <- head (sort(x$sd),3)
+  return(x[which(x$sd %in% best_sd | x$sd %in% worst_sd),])
+  })
 
 ##Write the linear regression info for just these countries to file.
-write.table(wbsgDat,
+write.table(extremRegDat,
             "WorstBestCountries.txt", quote = FALSE,
             sep = "\t", row.names = FALSE)
 ##Create a single-page figure for each continent, including data only for the 6-8 "extreme" countries, and write to file. One file per continent, with an informative name. The figure should give scatterplots of life expectancy vs. year, panelling/facetting on country, fitted line overlaid.
-extremCountries <- as.vector(wbsgDat$country)
-
+extremCountries <- as.vector(extremRegDat$country)
 extremSgDat <- subset(sgDat, country %in% extremCountries)
+##extremSgDat
 
 d_ply(extremSgDat, ~ continent, function(z) {
   
