@@ -48,4 +48,4 @@ gDat <- arrange(gDat, continent,country)
 ##tail(gDat)
 
 ## Write the Gapminder data to file(s), for immediate and future reuse.
-write.table (gDat,"gapminderDataSorted.txt",quote =FALSE )
+write.table (gDat,"gapminderDataSorted.txt",quote =FALSE,sep = "\t")
