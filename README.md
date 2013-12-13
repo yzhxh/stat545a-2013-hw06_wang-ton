@@ -1,13 +1,13 @@
 stat545a-2013-hw06_wang-ton
 ===========================
-This is a anlytical piipline based on GapminderData. 
+This is a analytical pipeline based on the Gapminder data used in the course. 
 To replicate my analysis: 
-* Dowload the following files into an emplty directory. 
+* Download the following files into an empty directory. 
   - Input data: [`gapminderDataFiveYear.txt`](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/gapminderDataFiveYear.txt)
   - Scripts: [`stat545a-2013-hw06_wang-ton-script01.R`](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/stat545a-2013-hw06_wang-ton-script01.R) and [`stat545a-2013-hw06_wang-ton-script02.R`](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/stat545a-2013-hw06_wang-ton-script02.R)
   - Makefile: [`makefile`](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/makefile.r)
 
-* Running `make -f makefile.r` in a shell. 
+* Run `make -f makefile.r` in a shell. 
 * New files you should see: 
   - [`XyPlotLifeExp.png`](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/XyPlotLifeExp.png)
   - [`BoxPlotGdpPerCap.png`](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/BoxPlotGdpPerCap.png)
