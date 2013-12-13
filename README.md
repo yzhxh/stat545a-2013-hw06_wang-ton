@@ -22,3 +22,6 @@ To replicate my analysis:
   - [`scatterplot_extremLifeYearReg_Europe.png`](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/scatterplot_extremLifeYearReg_Europe.png)
 * To remove the output and get a clean slate, in a shell: `make clean`
   
+Example of embedding a PNG file:
+
+![](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/XyPlotLifeExp.png)
