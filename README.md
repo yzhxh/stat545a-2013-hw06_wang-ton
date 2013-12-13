@@ -24,4 +24,4 @@ To replicate my analysis:
   
 Example of embedding a PNG file:
 
-![](https://github.com/yzhxh/stat545a-2013-hw06_wang-ton/blob/master/XyPlotLifeExp.png)
+![](https://raw.github.com/yzhxh/stat545a-2013-hw06_wang-ton/master/XyPlotLifeExp.png)
